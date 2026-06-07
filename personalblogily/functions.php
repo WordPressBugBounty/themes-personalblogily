@@ -330,6 +330,32 @@ add_action( 'wp_enqueue_scripts', 'personalblogily_google_fonts' );
 
 
 /**
+ * Fix editor font after WP 7.0.
+ */
+function personalblogily_editor_font_fix() {
+	wp_add_inline_style(
+		'personalblogily-google-fonts',
+		'
+		body,
+		.editor-styles-wrapper {
+			font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		}
+
+		.editor-styles-wrapper h1,
+		.editor-styles-wrapper h2,
+		.editor-styles-wrapper h3,
+		.editor-styles-wrapper h4,
+		.editor-styles-wrapper h5,
+		.editor-styles-wrapper h6 {
+			font-family: "Merriweather", Georgia, serif;
+		}
+		'
+	);
+}
+add_action( 'enqueue_block_assets', 'personalblogily_google_fonts' );
+add_action( 'enqueue_block_assets', 'personalblogily_editor_font_fix', 20 );
+
+/**
  * Dots after excerpt
  */
 
